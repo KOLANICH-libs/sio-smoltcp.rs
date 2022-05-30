@@ -1,0 +1,4 @@
+[submodule "smoltcp"]
+	path = smoltcp
+	url = https://codeberg.org/KOLANICH-libs/smoltcp
+	branch = legacy_rust_support
