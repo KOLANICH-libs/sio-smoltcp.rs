@@ -1,0 +1,29 @@
+[package]
+name = "sio-smoltcp"
+version = "0.1.0"
+edition = "2021"
+authors = ["KOLANICH <KOLANICH@users.noreply.github.com>"]
+description = "A sans-io shared lib using smoltcp"
+homepage = "https://github.com/KOLANICH/sio-smoltcp"
+repository = "https://github.com/KOLANICH/sio-smoltcp.git"
+readme = "ReadMe.md"
+license = "Unlicense"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+log = { version = "0.4.4", default-features = false, features = ["std"] }
+
+
+[dependencies.smoltcp]
+version = ">=0.8.0"
+default-features = false
+path = "./smoltcp"
+features = [
+	"std", "log",
+	"medium-ethernet", "medium-ip",
+	"proto-ipv4", "proto-igmp", "proto-dhcpv4", "proto-ipv6", "proto-dns",
+	"socket-icmp", "socket-udp", "socket-tcp", "socket-dhcpv4", "socket-dns",
+	"proto-ipv4-fragmentation", "proto-ipv4-tx-fragmentation"
+]

@@ -1,0 +1,11 @@
+language = "C"
+cpp_compat = true
+pragma_once = true
+tab_width = 4
+#style = "both" # both, tag, type
+line_length = 4294967295
+
+after_includes = "typedef void SocketHandle;\n"
+
+#`header`, `includes`, `sys_includes`, `after_includes`, `trailer`, `include_guard`, `pragma_once`, `no_includes`, `autogen_warning`, `include_version`, `namespace`, `namespaces`, `using_namespaces`, `braces`, `line_length`, `tab_width`, `line_endings`, `language`, `cpp_compat`, `style`, `sort_by`, `usize_is_size_t`, `parse`, `export`, `macro_expansion`, `layout`, `fn`, `struct`, `enum`, `const`, `defines`, `documentation`, `documentation_style`, `ptr`, `cython`
+
