@@ -1,6 +1,6 @@
 use core::ffi::c_void;
 
-use smoltcp::iface::FragmentsCache;
+use smoltcp::iface::ReassemblyBuffer;
 use smoltcp::iface::InterfaceBuilder;
 use smoltcp::iface::NeighborCache;
 use smoltcp::iface::Routes;
@@ -16,6 +16,8 @@ use crate::device::CDevice;
 use crate::device::CDevicePtr;
 use crate::device::CMedium;
 use crate::device::SansIO;
+
+
 
 pub type CBuilderPtr = *mut c_void;
 
@@ -62,7 +64,7 @@ pub extern "C" fn builderInitNeighbourCache(c_builder: CBuilderPtr) -> CBuilderP
 pub extern "C" fn builderInitSixlowpan(c_builder: CBuilderPtr) -> CBuilderPtr{
 	let mut builder_box = unsafe { Box::from_raw(builder_from_opaque_ptr(c_builder)) };
 	let mut out_packet_buffer = [0u8; 1280];
-	let sixlowpan_frag_cache = FragmentsCache::new(vec![], BTreeMap::new());
+	let sixlowpan_frag_cache = ReassemblyBuffer::new(vec![], BTreeMap::new());
 	*builder_box = (*builder_box)
 	.sixlowpan_fragments_cache(sixlowpan_frag_cache)
 	.sixlowpan_out_packet_cache(&mut out_packet_buffer[..]);
@@ -71,10 +73,10 @@ pub extern "C" fn builderInitSixlowpan(c_builder: CBuilderPtr) -> CBuilderPtr{
 */
 
 #[no_mangle]
-pub extern "C" fn builderInitIPv4FragmentsCache(c_builder: CBuilderPtr) -> CBuilderPtr {
+pub extern "C" fn builderInitIPv4ReassemblyBuffer(c_builder: CBuilderPtr) -> CBuilderPtr {
 	let mut builder_box = unsafe { Box::from_raw(builder_from_opaque_ptr(c_builder)) };
-	let ipv4_frag_cache = FragmentsCache::new(vec![], BTreeMap::new());
-	*builder_box = (*builder_box).ipv4_fragments_cache(ipv4_frag_cache);
+	let ipv4_frag_cache = ReassemblyBuffer::new(vec![], BTreeMap::new());
+	*builder_box = (*builder_box).ipv4_reassembly_buffer(ipv4_frag_cache);
 	return Box::into_raw(builder_box).cast();
 }
 

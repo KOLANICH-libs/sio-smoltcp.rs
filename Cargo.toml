@@ -25,5 +25,5 @@ features = [
 	"medium-ethernet", "medium-ip",
 	"proto-ipv4", "proto-igmp", "proto-dhcpv4", "proto-ipv6", "proto-dns",
 	"socket-icmp", "socket-udp", "socket-tcp", "socket-dhcpv4", "socket-dns",
-	"proto-ipv4-fragmentation", "proto-ipv4-tx-fragmentation"
+	"proto-ipv4-fragmentation", #"proto-ipv4-tx-fragmentation"
 ]
